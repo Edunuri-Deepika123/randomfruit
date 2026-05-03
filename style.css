@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+  }
+  
+  .card {
+    width: auto;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  
+  .btn{
+    height: fit-content;
+    background: #ff7a18;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+  }
+  
+  .btn:hover {
+    background: #ffb347;
+    transform: scale(1.05);
+  }
+  
+  .input-grp{
+    margin-top: 15px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 8px;
+  }
+  #input{
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: fit-content;
+  }
+  
