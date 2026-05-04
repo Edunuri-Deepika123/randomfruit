@@ -28,10 +28,6 @@ body {
     transition: 0.3s;
     flex:1;
     
-    
-    
-
-    
   }
   
   .btn:hover {
@@ -40,11 +36,15 @@ body {
   }
   
   .input-grp{
-  
-    align-items: stretch;
-  
+    /* align-items: stretch;
     flex-direction: column;
     gap: 10px;
+      */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   } 
 
   
