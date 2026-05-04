@@ -1,12 +1,14 @@
 
-let url=`https://corsproxy.io/?https://www.fruityvice.com/api/fruit/${name}`;
+//let url=`https://corsproxy.io/?https://www.fruityvice.com/api/fruit/${name}`;
 let inp=document.querySelector("input");
 let p=document.querySelector("p");
+let allfruits=[];
 
 let sbtn=document.querySelector("#sbtn");
 sbtn.addEventListener("click", async function(){
     let name=inp.value;
-
+     
+    
      let fruits= await getfruit(name);
      inp.value="";
 
@@ -21,23 +23,24 @@ async function getfruit(name){
     
     try{
         sbtn.innerText="Loading..."
-    let res=await axios.get(url + name);
-    let data=res.data;
-    
+    let res=await axios.get( "fruits.json");
+     allfruits=res.data;  
+    let fruit=allfruits.find(f=>f.name.toLowerCase().includes(name.toLowerCase()));
+
     //p.innerText="Fruit Name :"+ name + "\n"+"family : " + data.family + "\n" + "Genus : " + data.genus;
 
     p.innerText=`
-    Name : ${name}
-    Family : ${data.family}
-    Genus : ${data.genus}
+    Name : ${fruit.name}
+    Family : ${fruit.family}
+    Genus : ${fruit.genus}
  
     Nutritions :
  
-      Calories : ${data.nutritions.calories}
-      sugar : ${data.nutritions.sugar}
-      Fat : ${data.nutritions.fat}
-      Carbohydrates : ${data.nutritions.carbohydrates}
-      Proteins : ${data.nutritions.protein }
+      Calories : ${fruit.nutritions?.calories|| "N/A"}
+      sugar : ${fruit.nutritions?.sugar|| "N/A"}
+      Fat : ${fruit.nutritions?.fat|| "N/A"}
+      Carbohydrates : ${fruit.nutritions?.carbohydrates|| "N/A"}
+      Proteins : ${fruit.nutritions?.protein || "N/A"}
     `;
    
    console.log(res.data);
@@ -58,20 +61,25 @@ finally{
 
 
 
-let urll="https://corsproxy.io/?https://www.fruityvice.com/api/fruit/all";
+//let urll="https://corsproxy.io/?https://www.fruityvice.com/api/fruit/all";
+//let urll="https://www.fruityvice.com/api/fruit/all";
+//let urll = "https://api.allorigins.win/raw?url=https://www.fruityvice.com/api/fruit/all";
 
 let rbtn=document.querySelector("#rbtn");
 rbtn.addEventListener("click", function(){
-     ranfruit();
+     randomfruit();
 
 });
 
-async function ranfruit(){
+async function randomfruit(){
     try{
         rbtn.innerText="Loading..."
-    let res=await axios.get(urll);
+    let res=await axios.get("fruits.json");
+
     let ran=Math.floor(Math.random()*res.data.length);
     let fruits=res.data[ran];
+
+    console.log(res.data);
     
     let p=document.querySelector("p");
    // p.innerText="Fruit Name : " + fruits +"\n"+ "Family : "+ family  + "\n"+ "Genus : " + genus + "\n" + "Nutritions : " + nut; 
@@ -90,9 +98,12 @@ async function ranfruit(){
      Proteins : ${fruits.nutritions.protein }
    `;
     
-    rbtn.innerText="Random Fruit";
+    
     
 }catch(error){
     console.log("error:",error);
+    p.innerText="Error! Try again";
+}finally{
+    rbtn.innerText="Random Fruit";
 }
 }
