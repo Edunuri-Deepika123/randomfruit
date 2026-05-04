@@ -17,6 +17,7 @@ sbtn.addEventListener("click", async function(){
 async function getfruit(name){
     if(inp.value===""){
         p.innerText="please enter the fruit";
+        p.style.color="red";
         return;
     }
      
@@ -49,6 +50,7 @@ async function getfruit(name){
     
 }catch(error){
     p.innerText="Invalid Fruit Name ";
+    p.style.color="red";
    console.log("error:",error);
     return;
 }
