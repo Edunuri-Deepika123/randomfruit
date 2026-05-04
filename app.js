@@ -48,7 +48,7 @@ async function getfruit(name){
    
     
 }catch(error){
-    p.innerText="Fruit not found in our database.Please try another!";
+    p.innerText="Invalid Fruit Name ";
    console.log("error:",error);
     return;
 }
